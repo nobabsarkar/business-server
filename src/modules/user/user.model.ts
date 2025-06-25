@@ -1,6 +1,10 @@
-import { model, Schema } from "mongoose";
+import { Model, model, Schema } from "mongoose";
 import { TUser } from "./user.interface";
 import { UserStatus } from "./user.constant";
+
+type UserModel = Model<TUser> & {
+  isUserExistsByEmail(email: string): Promise<TUser | null>;
+};
 
 const userSchema = new Schema<TUser>(
   {
@@ -21,7 +25,7 @@ const userSchema = new Schema<TUser>(
 );
 
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await User.findOne({ email }).select("+password");
+  return await this.findOne({ email }).select("+password");
 };
 
-export const User = model<TUser>("User", userSchema);
+export const User = model<TUser, UserModel>("User", userSchema);
