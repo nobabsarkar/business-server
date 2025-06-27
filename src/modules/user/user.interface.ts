@@ -11,5 +11,5 @@ export interface TUser {
 }
 
 export interface IUserModel extends Model<TUser> {
-  isUserExistsByEmail(id: string): Promise<TUser>;
+  isUserExistsByEmail(email: string): Promise<TUser>;
 }
