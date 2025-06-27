@@ -3,15 +3,11 @@ export const USER_ROLE = {
   USER: "USER",
 } as const;
 
-export const USER_STATUS = {
-  ACTIVE: "ACTIVE",
-  BLOCKED: "BLOCKED",
-} as const;
+// export const USER_STATUS = {
+//   status: "in-progress",
+// } as const;
 
-export const UserSearchableFields = [
-  "name",
-  "email",
-  "phone",
-  "role",
-  "status",
-];
+// export const USER_STATUS = {
+//   IN_PROGRESS: "in-progress",
+//   BLOCKED: "blocked",
+// } as const;

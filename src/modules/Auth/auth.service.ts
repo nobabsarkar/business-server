@@ -30,7 +30,7 @@ const loginUserIntoDB = async (payload: TLoginUser) => {
     email: user.email,
     mobileNumber: user.mobileNumber,
     role: user.role,
-    status: user.status,
+    // status: user.status,
   };
 
   const accessToken = createToken(

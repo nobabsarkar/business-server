@@ -1,6 +1,5 @@
 import { Model, model, Schema } from "mongoose";
 import { TUser } from "./user.interface";
-import { UserStatus } from "./user.constant";
 
 type UserModel = Model<TUser> & {
   isUserExistsByEmail(email: string): Promise<TUser | null>;
@@ -14,10 +13,10 @@ const userSchema = new Schema<TUser>(
     mobileNumber: { type: String, required: true, unique: true },
     role: {
       type: String,
-      enum: ["admin", "user"],
+      enum: ["ADMIN", "USER"],
     },
-    status: { type: String, enum: UserStatus, default: "in-progress" },
-    isDeleted: { type: Boolean, default: false },
+    // status: { type: String, enum: USER_STATUS, default: "in-progress" },
+    // isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,

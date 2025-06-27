@@ -5,9 +5,9 @@ export interface TUser {
   email: string;
   password: string;
   mobileNumber: string;
-  role: "admin" | "user";
-  status: "in-progress" | "blocked";
-  isDeleted: boolean;
+  role: "ADMIN" | "USER";
+  // status: "in-progress" | "blocked";
+  // isDeleted: boolean;
 }
 
 export interface IUserModel extends Model<TUser> {
