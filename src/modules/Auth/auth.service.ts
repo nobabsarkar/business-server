@@ -19,7 +19,6 @@ import config from "../../app/config";
 // };
 
 const loginUserIntoDB = async (payload: TLoginUser) => {
-  // checking if the user is exist
   const user = await User.findOne(payload?.email);
 
   if (!user) {
