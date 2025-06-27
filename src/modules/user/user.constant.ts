@@ -1,6 +1,17 @@
 export const USER_ROLE = {
-  admin: "admin",
-  user: "user",
+  ADMIN: "ADMIN",
+  USER: "USER",
 } as const;
 
-export const UserStatus = ["in-progress", "blocked"];
+export const USER_STATUS = {
+  ACTIVE: "ACTIVE",
+  BLOCKED: "BLOCKED",
+} as const;
+
+export const UserSearchableFields = [
+  "name",
+  "email",
+  "phone",
+  "role",
+  "status",
+];
