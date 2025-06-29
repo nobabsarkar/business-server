@@ -19,17 +19,17 @@ import config from "../../app/config";
 // };
 
 const loginUserIntoDB = async (payload: TLoginUser) => {
-  const user = await User.findOne({ email: payload?.email });
-  // const user = await User.findOne(payload?.email);
+  // const user = await User.isUserExistsByEmail(payload?.email);
+  const user = await User.isUserExistsByEmail(payload?.email);
 
-  if (!user) {
-    throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
-  }
+  // if (!user) {
+  //   throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
+  // }
 
   const jwtPayload = {
-    email: user.email,
-    mobileNumber: user.mobileNumber,
-    role: user.role,
+    email: user?.email,
+    mobileNumber: user?.mobileNumber,
+    role: user?.role,
     // status: user.status,
   };
 

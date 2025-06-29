@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { HydratedDocument, Model } from "mongoose";
 
 export interface TUser {
   // id: string;
@@ -10,6 +10,11 @@ export interface TUser {
   // isDeleted: boolean;
 }
 
+// export interface IUserModel extends Model<TUser> {
+//   isUserExistsByEmail(email: string): Promise<TUser>;
+// }
+
 export interface IUserModel extends Model<TUser> {
-  isUserExistsByEmail(email: string): Promise<TUser>;
+  // isUserExistsByEmail(email: string): Promise<TUser>;
+  isUserExistsByEmail(email: string): Promise<HydratedDocument<TUser> | null>;
 }

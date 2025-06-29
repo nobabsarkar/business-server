@@ -1,9 +1,9 @@
 import { Model, model, Schema } from "mongoose";
-import { TUser } from "./user.interface";
+import { IUserModel, TUser } from "./user.interface";
 
-type UserModel = Model<TUser> & {
-  isUserExistsByEmail(email: string): Promise<TUser | null>;
-};
+// type UserModel = Model<TUser> & {
+//   isUserExistsByEmail(email: string): Promise<TUser | null>;
+// };
 
 const userSchema = new Schema<TUser>(
   {
@@ -23,8 +23,14 @@ const userSchema = new Schema<TUser>(
   }
 );
 
-userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await this.findOne({ email }).select("+password");
+// userSchema.statics.isUserExistsByEmail = async function (email: string) {
+//   return await this.findOne({ email }).select("+password");
+// };
+
+userSchema.statics.isUserExistsByEmail = async function (
+  email: string
+): Promise<TUser | null> {
+  return await this.findOne({ email }).lean();
 };
 
-export const User = model<TUser, UserModel>("User", userSchema);
+export const User = model<TUser, IUserModel>("User", userSchema);
