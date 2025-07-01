@@ -8,16 +8,6 @@ import { TLoginUser } from "./auth.interface";
 import { createToken } from "../../app/utils/verifyJWT";
 import config from "../../app/config";
 
-// const loginUserIntoDB = async (payload: TLoginUser) => {
-//   const user = await User.isUserExistsByEmail(payload?.email);
-
-//   return user;
-// };
-
-// export const AuthServices = {
-//   loginUserIntoDB,
-// };
-
 const loginUserIntoDB = async (payload: TLoginUser) => {
   // const user = await User.isUserExistsByEmail(payload?.email);
   const user = await User.isUserExistsByEmail(payload?.email);
