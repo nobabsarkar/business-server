@@ -8,15 +8,15 @@ export const createToken = (
   jwtPayload: {
     email: string;
     mobileNumber?: string;
-    role: keyof typeof USER_ROLE;
-    // status: keyof typeof USER_STATUS;
+    // role: keyof typeof USER_ROLE;
+    role: "ADMIN" | "USER";
   },
   secret: string,
-  expiresIn: string
+  expiresIn: string | number
 ) => {
   return jwt.sign(jwtPayload, secret, {
-    expiresIn: "1d",
-  });
+    expiresIn,
+  } as SignOptions);
 };
 
 export const verifyToken = (

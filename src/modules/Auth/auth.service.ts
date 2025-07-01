@@ -10,11 +10,12 @@ import config from "../../app/config";
 
 const loginUserIntoDB = async (payload: TLoginUser) => {
   // const user = await User.isUserExistsByEmail(payload?.email);
-  const user = await User.isUserExistsByEmail(payload?.email);
 
-  // if (!user) {
-  //   throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
-  // }
+  const user = await User.findOne(payload?.email);
+
+  if (!user) {
+    throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
+  }
 
   const jwtPayload = {
     email: user?.email,
