@@ -16,5 +16,5 @@ export interface TUser {
 
 export interface IUserModel extends Model<TUser> {
   // isUserExistsByEmail(email: string): Promise<TUser>;
-  isUserExistsByEmail(email: string): Promise<HydratedDocument<TUser> | null>;
+  isUserExistsByEmail(email: string): Promise<HydratedDocument<TUser>>;
 }
