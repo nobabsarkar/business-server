@@ -1,6 +1,3 @@
-// import { User } from "../user/user.model";
-// import { TLoginUser } from "./auth.interface";
-
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../app/errors/AppError";
 import { User } from "../user/user.model";
