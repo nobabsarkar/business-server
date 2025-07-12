@@ -17,8 +17,28 @@ const userSchema = new Schema<TUser>(
   }
 );
 
+// userSchema.statics.isUserExistsByEmail = async function (email: string) {
+//   return await User.findOne({ email }).select("+password");
+// };
+
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await this.findOne({ email }).select("+password");
+  return await User.findOne({ email }).select("+password");
+};
+
+// userSchema.statics.isPasswordMatched = async function (
+//   plainTextPassword,
+//   hashedPassword
+// ) {
+//   return await bcryptjs.compare(plainTextPassword, hashedPassword);
+// };
+
+userSchema.statics.isJWTIssuedBeforePasswordChanged = function (
+  passwordChangedTimestamp: number,
+  jwtIssuedTimestamp: number
+) {
+  const passwordChangedTime =
+    new Date(passwordChangedTimestamp).getTime() / 1000;
+  return passwordChangedTime > jwtIssuedTimestamp;
 };
 
 export const User = model<TUser, IUserModel>("User", userSchema);
