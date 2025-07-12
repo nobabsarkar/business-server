@@ -1,20 +1,13 @@
-import { HydratedDocument, Model } from "mongoose";
+import { Model } from "mongoose";
 
 export interface TUser {
-  // id: string;
+  id?: string;
   email: string;
   password: string;
   mobileNumber: string;
   role: "ADMIN" | "USER";
-  // status: "in-progress" | "blocked";
-  // isDeleted: boolean;
 }
 
-// export interface IUserModel extends Model<TUser> {
-//   isUserExistsByEmail(email: string): Promise<TUser>;
-// }
-
 export interface IUserModel extends Model<TUser> {
-  // isUserExistsByEmail(email: string): Promise<TUser>;
-  isUserExistsByEmail(email: string): Promise<HydratedDocument<TUser>>;
+  isUserExistsByEmail(email: string): Promise<TUser>;
 }
