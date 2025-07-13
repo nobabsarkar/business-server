@@ -1,11 +1,26 @@
 import { z } from "zod";
-const userValidationSchema = z.object({
-  email: z.string().email("Invalid email format"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  mobileNumber: z.string().min(1, "Mobile number is required"),
-  role: z.enum(["ADMIN", "USER"]),
+import { USER_ROLE } from "./user.constant";
+
+const createUserValidationSchema = z.object({
+  body: z.object({
+    name: z.string({
+      required_error: "Name is required",
+    }),
+    role: z.nativeEnum(USER_ROLE),
+    email: z
+      .string({
+        required_error: "Email is required",
+      })
+      .email({
+        message: "Invalid email",
+      }),
+    password: z.string({
+      required_error: "Password is required",
+    }),
+    mobileNumber: z.string().optional(),
+  }),
 });
 
 export const UserValidation = {
-  userValidationSchema,
+  createUserValidationSchema,
 };

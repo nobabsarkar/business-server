@@ -1,22 +1,18 @@
+/* eslint-disable no-unused-vars */
 import { Model } from "mongoose";
 import { USER_ROLE } from "./user.constant";
 
-export interface TUser {
-  id?: string;
-  email: string;
-  password: string;
-  mobileNumber: string;
-  role: "ADMIN" | "USER";
-}
-
-export type TRegisterUser = {
+export type TUser = {
   name: string;
-  email: string;
-  mobileNumber: string;
-  password: string;
   role: keyof typeof USER_ROLE;
+  email: string;
+  password: string;
+  mobileNumber?: string;
+  profilePhoto?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export interface IUserModel extends Model<TUser> {
-  isUserExistsByEmail(email: string): Promise<TUser>;
+  isUserExistsByEmail(id: string): Promise<TUser>;
 }
