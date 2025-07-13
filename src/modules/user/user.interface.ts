@@ -1,4 +1,5 @@
 import { Model } from "mongoose";
+import { USER_ROLE } from "./user.constant";
 
 export interface TUser {
   id?: string;
@@ -8,20 +9,14 @@ export interface TUser {
   role: "ADMIN" | "USER";
 }
 
-// export interface IUserModel extends Model<TUser> {
-//   isUserExistsByEmail(email: string): Promise<TUser>;
-// }
+export type TRegisterUser = {
+  name: string;
+  email: string;
+  mobileNumber: string;
+  password: string;
+  role: keyof typeof USER_ROLE;
+};
 
 export interface IUserModel extends Model<TUser> {
-  isUserExistsByEmail(id: string): Promise<TUser>;
-
-  isPasswordMatched(
-    plainTextPassword: string,
-    hashedPassword: string
-  ): Promise<boolean>;
-
-  isJWTIssuedBeforePasswordChanged(
-    passwordChangedTimestamp: Date,
-    jwtIssuedTimestamp: number
-  ): boolean;
+  isUserExistsByEmail(email: string): Promise<TUser>;
 }

@@ -4,8 +4,11 @@ import { User } from "../user/user.model";
 import { TLoginUser } from "./auth.interface";
 import { createToken } from "../../app/utils/verifyJWT";
 import config from "../../app/config";
+import { TRegisterUser, TUser } from "../user/user.interface";
 
-const loginUserIntoDB = async (payload: TLoginUser) => {
+const loginUserIntoDB = async (payload: TRegisterUser) => {
+  console.log(payload?.email);
+
   const user = await User.isUserExistsByEmail(payload?.email);
 
   // const user = await User.findOne(payload?.email);
