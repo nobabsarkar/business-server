@@ -1,19 +1,20 @@
 import { StatusCodes } from "http-status-codes";
+import config from "../../app/config";
 import catchAsync from "../../app/utils/catchAsync";
 import sendResponse from "../../app/utils/sendResponse";
-import { UserServices } from "./user.service";
+import { AuthServices } from "./user.service";
 
-const userRegister = catchAsync(async (req, res) => {
-  const user = await UserServices.createUser(req.body);
+const registerUser = catchAsync(async (req, res) => {
+  const result = await AuthServices.registerUser(req.body);
 
   sendResponse(res, {
-    success: true,
     statusCode: StatusCodes.OK,
-    message: "User Created Successfully",
-    data: user,
+    success: true,
+    message: "User registered in successfully!",
+    data: result,
   });
 });
 
-export const UserControllers = {
-  userRegister,
+export const AuthControllers = {
+  registerUser,
 };

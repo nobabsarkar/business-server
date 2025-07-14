@@ -2,6 +2,7 @@
 import { Schema, model } from "mongoose";
 import { USER_ROLE } from "./user.constant";
 import { IUserModel, TUser } from "./user.interface";
+import bcryptjs from "bcryptjs";
 
 const userSchema = new Schema<TUser, IUserModel>(
   {
@@ -45,6 +46,13 @@ const userSchema = new Schema<TUser, IUserModel>(
 
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
   return await User.findOne({ email }).select("+password");
+};
+
+userSchema.statics.isPasswordMatched = async function (
+  plainTextPassword,
+  hashedPassword
+) {
+  return await bcryptjs.compare(plainTextPassword, hashedPassword);
 };
 
 export const User = model<TUser, IUserModel>("User", userSchema);
