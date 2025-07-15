@@ -18,11 +18,11 @@ const userSchema = new Schema<TUser, IUserModel>(
     email: {
       type: String,
       required: true,
-      //validate email
-      match: [
-        /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
-        "Please fill a valid email address",
-      ],
+      // match: [
+      //   /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+      //   "Please fill a valid email address",
+      // ],
+      unique: true,
     },
     password: {
       type: String,
