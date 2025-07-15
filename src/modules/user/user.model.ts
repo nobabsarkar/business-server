@@ -10,18 +10,9 @@ const userSchema = new Schema<TUser, IUserModel>(
       type: String,
       required: true,
     },
-    role: {
-      type: String,
-      enum: Object.keys(USER_ROLE),
-      required: true,
-    },
     email: {
       type: String,
       required: true,
-      // match: [
-      //   /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
-      //   "Please fill a valid email address",
-      // ],
       unique: true,
     },
     password: {
@@ -29,13 +20,14 @@ const userSchema = new Schema<TUser, IUserModel>(
       required: true,
       select: 0,
     },
-    mobileNumber: {
-      type: String,
-      required: true,
-    },
     profilePhoto: {
       type: String,
       default: null,
+    },
+    role: {
+      type: String,
+      enum: Object.keys(USER_ROLE),
+      required: true,
     },
   },
   {
@@ -45,7 +37,7 @@ const userSchema = new Schema<TUser, IUserModel>(
 );
 
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
-  return await User.findOne({ email }).select("+password");
+  return await this.findOne({ email }).select("+password");
 };
 
 userSchema.statics.isPasswordMatched = async function (

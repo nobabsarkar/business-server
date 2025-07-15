@@ -9,11 +9,6 @@ const loginUser = catchAsync(async (req, res) => {
 
   const { accessToken } = result;
 
-  //   res.cookie("refreshToken", {
-  //     secure: config.NODE_ENV === "production",
-  //     httpOnly: true,
-  //   });
-
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,

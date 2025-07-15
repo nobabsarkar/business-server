@@ -1,10 +1,11 @@
-import { Application, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import router from "./app/routes";
 import globalErrorHandler from "./app/middleweres/globalErrorHandler";
 import notFound from "./app/middleweres/notFound";
+// import express from "express";
 
-const express = require("express");
+// const express = require("express");
 const app: Application = express();
 
 app.use(express.json());
