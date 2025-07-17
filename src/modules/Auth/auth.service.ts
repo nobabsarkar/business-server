@@ -9,9 +9,7 @@ import { TUser } from "../user/user.interface";
 const loginUser = async (payload: TLoginUser) => {
   // const user = await User.findOne(payload?.email);
 
-  const user = await User.isUserExistsByEmail(
-    payload?.email.toLocaleLowerCase()
-  );
+  const user = await User.isUserExistsByEmail(payload?.email);
 
   if (!user) {
     throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
