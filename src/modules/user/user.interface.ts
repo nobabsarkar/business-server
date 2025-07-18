@@ -10,6 +10,10 @@ export type TUser = {
   profilePhoto?: string;
 };
 
+// export interface UserModel extends Model<TUser> {
+//   isUserExistsByEmail(email: string): Promise<TUser | null>;
+// }
+
 export interface UserModel extends Model<TUser> {
-  isUserExistsByEmail(email: string): Promise<TUser | null>;
+  isUserExistsByEmail(email: string): Promise<HydratedDocument<TUser> | null>;
 }

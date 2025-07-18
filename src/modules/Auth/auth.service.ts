@@ -10,8 +10,6 @@ const loginUser = async (payload: TLoginUser) => {
 
   const user = await User?.isUserExistsByEmail(payload?.email);
 
-  // User.isUserExistsByEmail(payload?.email);
-
   // if (!user) {
   //   throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
   // }
