@@ -6,8 +6,8 @@ import { USER_ROLE } from "../../modules/user/user.constant";
 
 export const createToken = (
   jwtPayload: {
+    name: string;
     email: string;
-    mobileNumber?: string;
     // role: keyof typeof USER_ROLE;
     role: "ADMIN" | "USER";
   },
